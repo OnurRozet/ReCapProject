@@ -18,11 +18,33 @@ namespace Business.Concrete
             _carDal=carDal;
         }
 
+        public void Add(Car car)
+        {
+            
+            if (car.CarName.Length>2 && car.DailyPrice>0)
+            {
+                _carDal.Add(car);
 
+            }
+            else
+            {
+                Console.WriteLine(" it is not possible");
+            }
+        }
 
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
+        }
+
+        public List<Car> GetCarByColorId(int id)
+        {
+            return _carDal.GetAll(p => p.ColorId == id);
+        }
+
+        public List<Car> GetCarsByBrandId(int id)
+        {
+            return _carDal.GetAll(p => p.BrandId == id);
         }
     }
 }
